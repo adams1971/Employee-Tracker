@@ -3,11 +3,13 @@ Command Line application used to track employees using MySQL, Node.js &amp; Inqu
 
 
 # PUNCHLIST
-1. write index.js
-2. created package.json and dependencies
-3. create questionsJS
-4. create queriesJS
-5. write SQL Seeds and schema
+1. set up file tree
+2. set up readMe staging
+3. write index.js
+4. created package.json and dependencies
+5. create questionsJS
+6. create queriesJS
+7. write SQL Seeds and schema
 
 
 # Table of Contents
