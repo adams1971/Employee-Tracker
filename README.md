@@ -18,6 +18,27 @@ Command Line application used to track employees using MySQL, Node.js &amp; Inqu
 * [License](#License)
 * [Conclusion](#Conclusion) 
 
+## Description
+-----
+aaaaa
 
+## Features
+-----
+aaaaa
 
+## Usage
+------
+aaaaa
+
+Demonstation Video
+-----
+aaaaa
+
+## License
+------
+aaaaa
+
+## Conclusion
+-----
+aaaaa
 
