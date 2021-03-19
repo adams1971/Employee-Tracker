@@ -1,0 +1,25 @@
+{
+  "name": "Employee-Tracker",
+  "version": "1.0.0",
+  "description": "Command Line application used to track employees using MySQL, Node.js &amp; Inquirer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adams1971/Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adams1971/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/adams1971/Employee-Tracker#readme",
+  "dependencies": {
+    "i": "^0.3.6",
+    "inquirer": "^8.0.0",
+    "mysql2": "^2.2.5"
+  }
+}
