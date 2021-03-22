@@ -1,6 +1,6 @@
 USE empTrac_db;
 
-INSERT INTO department (name)
+INSERT INTO department (id, name)
 VALUES ("Culinary"),
 ("B&C"),
 ("Maintenance");
