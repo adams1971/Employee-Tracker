@@ -29,6 +29,8 @@ const start = () => {
         type: 'rawlist',
         choices: [
             'view all employees',
+            'view all roles',
+            'view all departments',
             'view all employees by role',
             'view all employees by department',
             'view all employees by manager',
@@ -45,18 +47,26 @@ const start = () => {
     .then((answers) => {
         switch (answers.action) {
 
-            case 'view employees':
+            case 'view all employees':
                 viewEmployees();
                 break;
             
-            case 'view roles':
-                viewRoles();
+            case 'view all roles':
+                viewAllRoles();
                 break;
                 
-            case 'view departments':
-                viewDepartments();
+            case 'view all departments':
+                viewAllDepartments();
                 break;
              
+            case 'view all employees by role':
+                viewAllEmployeesByRole();
+                break;
+                        
+            case 'view all employees by department':
+            viewAllEmployeesByDepartment();
+            break;                   
+            
             case 'view all employees by manager':
                 viewAllEmployeesByManager();
                 break;
@@ -95,7 +105,7 @@ const viewEmployees = () => {
     });
 };
 
-const viewRoles = () => {
+const viewAllRoles = () => {
 
     //setTimeout(function(){start();},1000);
     connection.query('SELECT title FROM role', (err, res) => {
@@ -135,8 +145,20 @@ const viewRoles = () => {
     });
 };
 
-const viewDepartments = () => {
-    console.log('view departments');
+const viewAllDepartments = () => {
+    console.log('view all departments');
+
+    setTimeout(function(){start();},1000);
+}
+
+const viewAllEmployeesByRole = () => {
+    console.log('view all employees by role');
+
+    setTimeout(function(){start();},1000);
+}
+
+const viewAllEmployeesByDepartment = () => {
+    console.log('view all employees by department');
 
     setTimeout(function(){start();},1000);
 }
