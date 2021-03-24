@@ -64,8 +64,8 @@ const start = () => {
                 break;
                         
             case 'view all employees by department':
-            viewAllEmployeesByDepartment();
-            break;                   
+                viewAllEmployeesByDepartment();
+                break;                   
             
             case 'view all employees by manager':
                 viewAllEmployeesByManager();
@@ -95,38 +95,45 @@ const start = () => {
 };
 // View employees, roles, departments
 const viewEmployees = () => {
-    
-    let sql = `SELECT id AS 'Emp ID', CONCAT(first_name, ' ', last_name) as 'name' FROM employee`
+    console.log("abc")
+    let sql = `SELECT id AS 'Emp ID', CONCAT(first_name, ' ', last_name) AS 'name' FROM employee`
     connection.query(sql, (err, res) => {
-        if (err) throw err;
+        console.log(err);
+        console.log(res);
+        if (err) {
+            console.log(err);
+            throw err;
+        }
         console.table(res);
-        //console.log("View your Employees Above");
-        setTimeout(function(){start();}, 1000)
+        console.log("View your Employees Above");
+        //setTimeout(function(){start();}, 1000)
+        start();
     });
 };
 
 const viewAllRoles = () => {
-
+    console.log('efg')
     //setTimeout(function(){start();},1000);
     connection.query('SELECT title FROM role', (err, res) => {
         if (err) throw err;
         console.table(res);
         console.log("View All Roles Above");
-        setTimeout(function(){start();}, 1000)
-        inquirer
-        .prompt({
-                name: 'chooseRole',
-                message: 'Select a role?',
-                type: 'rawlist',
-                choices() {
-                    const choiceArray = []
-                    res.forEach(({ title }) => {
-                        choiceArray.push(title);
-                    });
-                    return choiceArray;
-                },
-            }
-        )
+        //setTimeout(function(){start();}, 1000)
+        start();
+        // inquirer
+        // .prompt({
+        //         name: 'chooseRole',
+        //         message: 'Select a role?',
+        //         type: 'rawlist',
+        //         choices() {
+        //             const choiceArray = []
+        //             res.forEach(({ title }) => {
+        //                 choiceArray.push(title);
+        //             });
+        //             return choiceArray;
+        //         },
+        //     }
+        // )
         // .then ((answers) => {
         //     let sql = `SELECT employee.id AS 'emp id', CONCAT(employee.first_name, ' ', employee.last_name) AS 'name' FROM 'role'
         //     INNER JOIN employee ON role.id = employee.role_id
@@ -135,13 +142,13 @@ const viewAllRoles = () => {
         //         if (err) throw err;
         //         if (res !== '') {
         //             console.table(`Employees are assigned to ${answers.chooseRole})` , res);
-        //             //start();
+        //             start();
         //         } else {
         //             console.log(`no ${answers.chooseRoles} assinged to employees`);
         //             setTimeout(function(){start();}, 1000)
         //       };
         //    });
-        //});
+        // });
     });
 };
 
