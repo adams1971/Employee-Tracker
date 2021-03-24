@@ -31,12 +31,11 @@ const start = () => {
             'view all employees',
             'view all roles',
             'view all departments',
-            'view all employees by role',
-            'view all employees by department',
-            'view all employees by manager',
-            'add employee',
-            'add role',
-            'add department',
+            //2///////////////////////
+            'add new employee',
+            'add new role',
+            'add new department',
+            //3///////////////////////
             'update employee roll',
             'exit employee tracker'
 
@@ -58,7 +57,21 @@ const start = () => {
             case 'view all departments':
                 viewAllDepartments();
                 break;
+            
+                //2//////////////////////////////
+            case 'add new employee':
+                addNewEmployee();
+                break;
+            
+            case 'add new role':
+                addNewRole();
+                break;
+                    
+            case 'add new department':
+                addNewDepartment();
+                break;
              
+                //3///////////////////////////////
             case 'view all employees by role':
                 viewAllEmployeesByRole();
                 break;
@@ -71,18 +84,6 @@ const start = () => {
                 viewAllEmployeesByManager();
                 break;
                         
-            case 'add employee':
-                addEmployee();
-                break;
-            
-            case 'add role':
-                addRole();
-                break;
-                    
-            case 'add department':
-                addDepartment();
-                break;
-
             case 'update employee roll':
                 updateEmployeeRole();
                 break;
@@ -93,9 +94,9 @@ const start = () => {
         }
     });
 };
-// View employees, roles, departments
+//////////////// View employees, roles, departments////////////////
 const viewEmployees = () => {
-    console.log("abc")
+    //console.log("abc")
     let sql = `SELECT id AS 'Emp ID', CONCAT(first_name, ' ', last_name) AS 'name' FROM employee`
     connection.query(sql, (err, res) => {
         console.log(err);
@@ -112,13 +113,11 @@ const viewEmployees = () => {
 };
 
 const viewAllRoles = () => {
-    console.log('efg')
-    //setTimeout(function(){start();},1000);
+    //console.log('efg')
     connection.query('SELECT title FROM role', (err, res) => {
         if (err) throw err;
         console.table(res);
         console.log("View All Roles Above");
-        //setTimeout(function(){start();}, 1000)
         start();
         // inquirer
         // .prompt({
@@ -153,11 +152,69 @@ const viewAllRoles = () => {
 };
 
 const viewAllDepartments = () => {
-    console.log('view all departments');
+    //console.log('hij');
+    connection.query('SELECT * FROM department', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        console.log("View All Departments Above");
+        start();
+    // setTimeout(function(){start();},1000);
+    });
+};
 
-    setTimeout(function(){start();},1000);
-}
+//////////////// 2 add new employees, roles, departments////////////////
+const addNewEmployee = () => {
+    // console.log('you are in add new employee');
+    // let sql = 'SELECT * FROM role;SELECT * FROM employee';
+    // connection.query(sql, (err, res) => {
+    //     if (err) throw err;
+        inquirer.prompt([
+            {
+                name: 'firstName',
+                message: 'Enter first name of new employee',
+                type: 'input',
+            },
+                
+            {
+                name: 'lastName',
+                message: 'Enter last name of new employee',
+                type: 'input',
+            },
 
+            {
+                name: 'newEmpRoleId',
+                message: 'Enter role ID of new employee',
+                type: 'input',
+            },
+
+            {
+                name: 'newEmployeesManagerId',
+                message: 'Enter new employees manager ID',
+                type: 'input',
+                
+            }
+        ])
+        .then((answers) => {
+            /////////STOPPED HERE/////////////////////
+        })  
+    };
+    console.log('abc');
+    start();
+    //setTimeout(function(){start();},1000);
+};
+
+const addNewRole = () => {
+    console.log('you are in add new role');
+
+    start();
+};
+
+const addNewDepartment = () => {
+    console.log('you are in add new department');
+
+    start()
+};
+//3///////////////
 const viewAllEmployeesByRole = () => {
     console.log('view all employees by role');
 
@@ -172,24 +229,6 @@ const viewAllEmployeesByDepartment = () => {
 
 const viewAllEmployeesByManager = () => {
     console.log('view all employees by manager');
-
-    setTimeout(function(){start();},1000);
-}
-
-const addEmployee = () => {
-    console.log('you are in add employee');
-
-    setTimeout(function(){start();},1000);
-}
-
-const addRole = () => {
-    console.log('you are in add role');
-
-    setTimeout(function(){start();},1000);
-}
-
-const addDepartment = () => {
-    console.log('you are in add department');
 
     setTimeout(function(){start();},1000);
 }
