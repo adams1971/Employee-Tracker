@@ -1,4 +1,3 @@
--- Drops the empTrac_db; if it exists currently --
 DROP DATABASE IF EXISTS empTrac_db;
 -- Creates the "empTrac_db;" database --
 CREATE DATABASE empTrac_db;
@@ -25,9 +24,9 @@ PRIMARY KEY (id)
 -- Creates table "employee" --
 CREATE TABLE employee (
 id INT AUTO_INCREMENT NOT NULL,
-first_name VARCHAR(30) NULL,
-last_name VARCHAR(30) NULL,
+first_name VARCHAR(30),
+last_name VARCHAR(30),
 role_id INT,
-manager_id INT NOT NULL
+manager_id INT,
 PRIMARY KEY (id)
 );
