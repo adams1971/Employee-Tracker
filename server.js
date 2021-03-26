@@ -35,7 +35,7 @@ const start = () => {
         "add new role",
         "add new department",
         //3///////////////////////
-        "update employee roll",
+        "update employee role",
         "exit employee tracker",
       ],
       //default: 'view all employees',
@@ -68,6 +68,11 @@ const start = () => {
           break;
 
         //3///////////////////////////////
+        
+        case "update employee roll":
+          updateEmployeeRole();
+          break;
+      
         case "view all employees by role":
           viewAllEmployeesByRole();
           break;
@@ -78,10 +83,6 @@ const start = () => {
 
         case "view all employees by manager":
           viewAllEmployeesByManager();
-          break;
-
-        case "update employee roll":
-          updateEmployeeRole();
           break;
 
         case "exit employee tracker":
@@ -154,11 +155,10 @@ const viewAllDepartments = () => {
     console.table(res);
     console.log("View All Departments Above");
     start();
-    // setTimeout(function(){start();},1000);
   });
 };
 
-//////////////// 2 add new employees, roles, departments////////////////
+//////////////// 2. add new employees, roles, departments////////////////
 const addNewEmployee = () => {
   console.log("you are in add new employee");
   // let sql = 'SELECT * FROM role;SELECT * FROM employee';
@@ -201,30 +201,107 @@ const addNewEmployee = () => {
         },
         (err) => {
           if (err) throw err;
-          console.log("new employee was entered.");
+          console.log("The new Employee was created.");
           start();
         }
       );
     });
 };
 
-//     console.log('abc');
-//     start();
-//     //setTimeout(function(){start();},1000);
-// };
-
 const addNewRole = () => {
   console.log("you are in add new role");
 
-  start();
+  inquirer
+    .prompt([
+      {
+        name: "title",
+        message: "Enter new role title",
+        type: "input",
+      },
+
+      {
+        name: "salary",
+        message: "Enter new role salary",
+        type: "input",
+      },
+
+      {
+        name: "departmentId",
+        message: "Enter department ID of new role",
+        type: "input",
+      },
+
+    ])
+    .then((answers) => {
+      connection.query(
+        "INSERT INTO role SET ?",
+        {
+          title: answers.title,
+          salary: answers.salary,
+          department_id: answers.departmentId,
+        },
+        (err) => {
+          if (err) throw err;
+          console.log("The new Role was created.");
+          start();
+        }
+      );
+    });
 };
 
 const addNewDepartment = () => {
   console.log("you are in add new department");
 
-  start();
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "Enter new department name",
+        type: "input",
+      },
+    ])
+    .then((answers) => {
+      connection.query(
+        "INSERT INTO department SET ?",
+        {
+          name: answers.name,
+        },
+        (err) => {
+          if (err) throw err;
+          console.log("The new Department was created.");
+          start();
+        }
+      );
+    });
 };
-//3///////////////
+
+
+//3. ///////////////
+const updateEmployeeRole = () => {
+  console.log("you are in update employee role");
+
+  inquirer.prompt([
+    {
+      name: "newRole_id",
+      message: "What is the New Role ID?",
+      type: "input",
+    }
+  ])
+  .then((answers) => {
+    connection.query(
+      "UPDATE employee SET ? WHERE ?",
+      [{ newRole_id: answers.newRole_id},
+      { id: id}],
+      (err) => {
+        if (err) throw err;
+        console.log("The employee's role id was updated.");
+        start();
+
+      }
+    );
+  });
+};
+
 const viewAllEmployeesByRole = () => {
   console.log("view all employees by role");
 
@@ -243,14 +320,6 @@ const viewAllEmployeesByDepartment = () => {
 
 const viewAllEmployeesByManager = () => {
   console.log("view all employees by manager");
-
-  setTimeout(function () {
-    start();
-  }, 1000);
-};
-
-const updateEmployeeRole = () => {
-  console.log("you are in update employee roll");
 
   setTimeout(function () {
     start();
