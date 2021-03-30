@@ -1,10 +1,10 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2"); //object form my sql pkg 
 const inquirer = require("inquirer");
 require("dotenv").config();
 const cTable = require("console.table");
 
-//create connection
-const connection = mysql.createConnection({
+//create connection method take an obj (the host, port, db, uer, pw) as its peram. which allow that connection to happen
+const connection = mysql.createConnection({ 
   host: "localhost",
   port: 3306,
   database: "empTrac_db",
@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   password: "password1",
 });
 
-//connect response and start application which requires a connection call back '=>' and catch any error that may be produced by the attempt to connect from createConnection
+//connect method take a function call back => and asks for an err is there is a problem no err- the console.log runs. response and start application which requires a connection call back '=>' and catch any error that may be produced by the attempt to connect from createConnection 
 connection.connect((err) => {
   if (err) throw err;
   console.log(`now connected to id ${connection.threadId}`);
@@ -35,7 +35,7 @@ const start = () => {
         "add new role",
         "add new department",
         //3///////////////////////
-        "update employee roll",
+        "update employee role",
         "exit employee tracker",
       ],
       //default: 'view all employees',
@@ -68,6 +68,11 @@ const start = () => {
           break;
 
         //3///////////////////////////////
+        
+        case "update employee roll":
+          updateEmployeeRole();
+          break;
+      
         case "view all employees by role":
           viewAllEmployeesByRole();
           break;
@@ -78,10 +83,6 @@ const start = () => {
 
         case "view all employees by manager":
           viewAllEmployeesByManager();
-          break;
-
-        case "update employee roll":
-          updateEmployeeRole();
           break;
 
         case "exit employee tracker":
@@ -200,17 +201,12 @@ const addNewEmployee = () => {
         },
         (err) => {
           if (err) throw err;
-          console.log("new employee was entered.");
+          console.log("The new Employee was created.");
           start();
         }
       );
     });
 };
-
-//     console.log('abc');
-//     start();
-//     //setTimeout(function(){start();},1000);
-// };
 
 const addNewRole = () => {
   console.log("you are in add new role");
@@ -218,55 +214,108 @@ const addNewRole = () => {
   inquirer
     .prompt([
       {
-        name: "firstName",
-        message: "Enter first name of new employee",
+        name: "title",
+        message: "Enter new role title",
         type: "input",
       },
 
       {
-        name: "lastName",
-        message: "Enter last name of new employee",
+        name: "salary",
+        message: "Enter new role salary",
         type: "input",
       },
 
       {
-        name: "roleId",
-        message: "Enter role ID of new employee",
+        name: "departmentId",
+        message: "Enter department ID of new role",
         type: "input",
       },
 
-      {
-        name: "managerId",
-        message: "Enter new employees manager ID",
-        type: "input",
-      },
     ])
     .then((answers) => {
       connection.query(
-        "INSERT INTO employee SET ?",
+        "INSERT INTO role SET ?",
         {
-          // first_name: answers.firstName,
-          // last_name: answers.lastName,
-          // role_id: answers.roleId,
-          // manager_id: answers.managerId
+          title: answers.title,
+          salary: answers.salary,
+          department_id: answers.departmentId,
         },
         (err) => {
           if (err) throw err;
-          console.log("new employee was entered.");
+          console.log("The new Role was created.");
           start();
         }
       );
     });
 };
-  start();
-};
 
 const addNewDepartment = () => {
   console.log("you are in add new department");
 
-  start();
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "Enter new department name",
+        type: "input",
+      },
+    ])
+    .then((answers) => {
+      connection.query(
+        "INSERT INTO department SET ?",
+        {
+          name: answers.name,
+        },
+        (err) => {
+          if (err) throw err;
+          console.log("The new Department was created.");
+          start();
+        }
+      );
+    });
 };
-//3///////////////
+
+
+//3. ///////////////
+const updateEmployeeRole = async () => {
+  const employee = await queryEmployee();
+  const role = await queryRole();
+  const answers = await inquire.prompt([
+    {
+      name: "employee_id",
+      message: "What is the new role ID?",
+      type: "list",
+      choices:  
+    }
+  ]);
+
+}
+// const updateEmployeeRole = () => {
+//   console.log("you are in update employee role");
+
+//   inquirer
+//   .prompt([
+//     {
+//       name: "newRole_id",
+//       message: "What is the New Role ID?",
+//       type: "input",
+//     }
+//   ])
+//   .then((answers) => {
+//     connection.query(
+//       "UPDATE employee SET ? WHERE ?",
+//       [{ newRole_id: answers.newRole_id},
+//       { id: id}],
+//       (err) => {
+//         if (err) throw err;
+//         console.log("The employee's role id was updated.");
+//         start();
+
+//       }
+//     );
+//   });
+// };
+
 const viewAllEmployeesByRole = () => {
   console.log("view all employees by role");
 
@@ -285,14 +334,6 @@ const viewAllEmployeesByDepartment = () => {
 
 const viewAllEmployeesByManager = () => {
   console.log("view all employees by manager");
-
-  setTimeout(function () {
-    start();
-  }, 1000);
-};
-
-const updateEmployeeRole = () => {
-  console.log("you are in update employee roll");
 
   setTimeout(function () {
     start();

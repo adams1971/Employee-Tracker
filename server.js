@@ -1,9 +1,9 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2"); //object form my sql pkg
 const inquirer = require("inquirer");
 require("dotenv").config();
 const cTable = require("console.table");
 
-//create connection
+//create connection method take an obj (the host, port, db, uer, pw) as its peram. which allow that connection to happen
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   password: "password1",
 });
 
-//connect response and start application which requires a connection call back '=>' and catch any error that may be produced by the attempt to connect from createConnection
+//connect method take a function call back => and asks for an err is there is a problem no err- the console.log runs. response and start application which requires a connection call back '=>' and catch any error that may be produced by the attempt to connect from createConnection
 connection.connect((err) => {
   if (err) throw err;
   console.log(`now connected to id ${connection.threadId}`);
@@ -68,11 +68,11 @@ const start = () => {
           break;
 
         //3///////////////////////////////
-        
-        case "update employee roll":
+
+        case "update employee role":
           updateEmployeeRole();
           break;
-      
+
         case "view all employees by role":
           viewAllEmployeesByRole();
           break;
@@ -116,35 +116,6 @@ const viewAllRoles = () => {
     console.table(res);
     console.log("View All Roles Above");
     start();
-    // inquirer
-    // .prompt({
-    //         name: 'chooseRole',
-    //         message: 'Select a role?',
-    //         type: 'rawlist',
-    //         choices() {
-    //             const choiceArray = []
-    //             res.forEach(({ title }) => {
-    //                 choiceArray.push(title);
-    //             });
-    //             return choiceArray;
-    //         },
-    //     }
-    // )
-    // .then ((answers) => {
-    //     let sql = `SELECT employee.id AS 'emp id', CONCAT(employee.first_name, ' ', employee.last_name) AS 'name' FROM 'role'
-    //     INNER JOIN employee ON role.id = employee.role_id
-    //     WHERE role.title = '${answers.chooseRole}'`;
-    //     connection.query(sql, (err, res) => {
-    //         if (err) throw err;
-    //         if (res !== '') {
-    //             console.table(`Employees are assigned to ${answers.chooseRole})` , res);
-    //             start();
-    //         } else {
-    //             console.log(`no ${answers.chooseRoles} assinged to employees`);
-    //             setTimeout(function(){start();}, 1000)
-    //       };
-    //    });
-    // });
   });
 };
 
@@ -197,7 +168,7 @@ const addNewEmployee = () => {
           first_name: answers.firstName,
           last_name: answers.lastName,
           role_id: answers.roleId,
-          manager_id: answers.managerId
+          manager_id: answers.managerId,
         },
         (err) => {
           if (err) throw err;
@@ -230,7 +201,6 @@ const addNewRole = () => {
         message: "Enter department ID of new role",
         type: "input",
       },
-
     ])
     .then((answers) => {
       connection.query(
@@ -275,56 +245,78 @@ const addNewDepartment = () => {
     });
 };
 
+//3. Update Employee Role ///////////////
+// const updateEmployeeRole = async () => {
+//   const employee = await queryEmployee();
+//   const role = await queryRole();
+//   const answers = await inquire.prompt([
+//     {
+//       name: "employee_id",
+//       message: "What is the new role ID?",
+//       type: "list",
+//       choices:
+//     }
+//   ]);
 
-//3. ///////////////
+// }
 const updateEmployeeRole = () => {
   console.log("you are in update employee role");
 
-  inquirer.prompt([
-    {
-      name: "newRole_id",
-      message: "What is the New Role ID?",
-      type: "input",
-    }
-  ])
-  .then((answers) => {
-    connection.query(
-      "UPDATE employee SET ? WHERE ?",
-      [{ newRole_id: answers.newRole_id},
-      { id: id}],
-      (err) => {
-        if (err) throw err;
-        console.log("The employee's role id was updated.");
-        start();
-
-      }
-    );
-  });
+  inquirer
+    .prompt([
+      {
+        name: "role_id",
+        message: "What is the New Role ID?",
+        type: "input",
+      },
+      {
+        name: "role_title",
+        message: "What is the role title?",
+        type: "input",
+      },
+      {
+        name: "role_salary",
+        message: "What is the role salary?",
+        type: "input",
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      connection.query(
+        "UPDATE role SET ? WHERE ?",
+        [{ title: answers.role_title }, { id: answers.role_id }],
+        (err) => {
+          if (err) throw err;
+          console.log("The employee's role id was updated.");
+          start();
+        }
+      );
+    });
 };
 
-const viewAllEmployeesByRole = () => {
-  console.log("view all employees by role");
+// const viewAllEmployeesByRole = () => {
+//   console.log("view all employees by role");
 
-  setTimeout(function () {
-    start();
-  }, 1000);
-};
+//   setTimeout(function () {
+//     start();
+//   }, 1000);
+// };
 
-const viewAllEmployeesByDepartment = () => {
-  console.log("view all employees by department");
+// const viewAllEmployeesByDepartment = () => {
+//   console.log("view all employees by department");
 
-  setTimeout(function () {
-    start();
-  }, 1000);
-};
+//   setTimeout(function () {
+//     start();
+//   }, 1000);
+// };
 
-const viewAllEmployeesByManager = () => {
-  console.log("view all employees by manager");
+// const viewAllEmployeesByManager = () => {
+//   console.log("view all employees by manager");
 
-  setTimeout(function () {
-    start();
-  }, 1000);
-};
+//   setTimeout(function () {
+//     start();
+//   }, 1000);
+// };
 
 const exitEmployeeTracker = () => {
   console.log("Have a nice Day!");
