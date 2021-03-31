@@ -26,8 +26,6 @@ Command Line application used to track employees using MySQL, Node.js &amp; Inqu
 -----
 Design the following database schema containing three tables:
 
-![Database Schema](Assets/schema.png)
-
 * **department**:
 
   * **id** - Primary Key

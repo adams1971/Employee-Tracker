@@ -18,12 +18,7 @@ id INT AUTO_INCREMENT NOT NULL,
 title VARCHAR(30) NOT NULL,
 salary DECIMAL (10,2)NOT NULL,
 department_id INT,  
-PRIMARY KEY (id),
-
-CONSTRAINT fk_department 
-FOREIGN KEY (department_id)
-REFERENCES department(id)
-ON DELETE CASCADE
+PRIMARY KEY (id)
 );
 
 -- Creates table "employee" --
@@ -33,15 +28,5 @@ first_name VARCHAR(30),
 last_name VARCHAR(30),
 role_id INT,
 manager_id INT,
-PRIMARY KEY (id),
-
-CONSTRAINT fk_role
-FOREIGN KEY (role_id)
-REFERENCES role(id)
-ON DELETE CASCADE,
-
-CONSTRAINT fk_employee 
-FOREIGN KEY (manager_id)
-REFERENCES employee(id)
-ON DELETE SET NULL
+PRIMARY KEY (id)
 );

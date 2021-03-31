@@ -93,7 +93,7 @@ const start = () => {
 };
 //////////////// View employees, roles, departments////////////////
 const viewEmployees = () => {
-  //console.log("abc")
+  console.log("console abc")
   let sql = `SELECT id AS 'Emp ID', CONCAT(first_name, ' ', last_name) AS 'name' FROM employee`;
   connection.query(sql, (err, res) => {
     console.log(err);
@@ -104,7 +104,7 @@ const viewEmployees = () => {
     }
     console.table(res);
     console.log("View your Employees Above");
-    //setTimeout(function(){start();}, 1000)
+    
     start();
   });
 };
@@ -132,9 +132,6 @@ const viewAllDepartments = () => {
 //////////////// 2. add new employees, roles, departments////////////////
 const addNewEmployee = () => {
   console.log("you are in add new employee");
-  // let sql = 'SELECT * FROM role;SELECT * FROM employee';
-  // connection.query(sql, (err, res) => {
-  //     if (err) throw err;
   inquirer
     .prompt([
       {
@@ -246,19 +243,7 @@ const addNewDepartment = () => {
 };
 
 //3. Update Employee Role ///////////////
-// const updateEmployeeRole = async () => {
-//   const employee = await queryEmployee();
-//   const role = await queryRole();
-//   const answers = await inquire.prompt([
-//     {
-//       name: "employee_id",
-//       message: "What is the new role ID?",
-//       type: "list",
-//       choices:
-//     }
-//   ]);
 
-// }
 const updateEmployeeRole = () => {
   console.log("you are in update employee role");
 
