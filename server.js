@@ -94,7 +94,7 @@ const start = () => {
 //////////////// View employees, roles, departments////////////////
 const viewEmployees = () => {
   console.log("console abc")
-  let sql = `SELECT id AS 'Emp ID', CONCAT(first_name, ' ', last_name) AS 'name' FROM employee`;
+  let sql = `SELECT id AS 'employee id', CONCAT(first_name, ' ', last_name) AS 'name' FROM employee`;
   connection.query(sql, (err, res) => {
     console.log(err);
     console.log(res);
