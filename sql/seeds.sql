@@ -1,11 +1,11 @@
 USE empTrac_db;
 
-INSERT INTO department (id, name)
+INSERT INTO department (name)
 VALUES ("Culinary"),
 ("B&C"),
 ("Maintenance");
 
-INSERT INTO role (title, salary, department_id)
+INSERT INTO role (title, salary, department_id) 
 VALUES ("Culinary Lead", 45000, 1),
 ("Culinary Cook", 34000, 1),
 ("Culinary Prep", 30000, 1),
@@ -16,16 +16,20 @@ VALUES ("Culinary Lead", 45000, 1),
 ("Maintenance Electrical", 46000, 3),
 ("Maintenance Plumbing", 45000, 3);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Blue", "Barry", 1, 5),
-("Rock", "Cod", 2, 5),
-("Steak", "Fritz", 3, 5),
-("Lucy", "Lead", 4, 7),
-("Sally", "Server", 5, 7),
-("Henry", "House", 6, 7),
-("Gery", "Grounds", 7, 10),
-("Eric", "Electric", 8, 10),
-("Peter", "Plumber", 9, 10);
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES ("Blue", "Barry", 1),
+("Rock", "Cod", 2),
+("Steak", "Fritz", 3),
+("Lucy", "Lead", 4),
+("Sally", "Server", 5),
+("Henry", "House", 6),
+("Gery", "Grounds", 7),
+("Eric", "Electric", 8),
+("Peter", "Plumber", 9);
+
+UPDATE employee
+SET manager_id = true
+WHERE id = 9;
 
 
 
