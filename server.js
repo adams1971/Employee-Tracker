@@ -1,9 +1,9 @@
-const mysql = require("mysql2"); //object form my sql pkg
+const mysql = require("mysql2"); //object from my sql pkg
 const inquirer = require("inquirer");
 require("dotenv").config();
 const cTable = require("console.table");
 
-//create connection method take an obj (the host, port, db, uer, pw) as its peram. which allow that connection to happen
+//create connection method take an obj (the host, port, db, user, pw) as its peram. which allow that connection to happen
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -18,15 +18,16 @@ connection.connect((err) => {
   console.log(`now connected to id ${connection.threadId}`);
   start();
 });
-//removed (err, res) from start
+
 const start = () => {
-  // if (err) throw err;
+  
   inquirer
     .prompt({
       name: "action",
       message: "What would you like to do?",
       type: "rawlist",
       choices: [
+        //1///////////////////////
         "view all employees",
         "view all roles",
         "view all departments",
@@ -38,10 +39,11 @@ const start = () => {
         "update employee role",
         "exit employee tracker",
       ],
-      //default: 'view all employees',
+     
     })
     .then((answers) => {
       switch (answers.action) {
+        //1/////////////////////////
         case "view all employees":
           viewEmployees();
           break;
@@ -68,22 +70,21 @@ const start = () => {
           break;
 
         //3///////////////////////////////
-
         case "update employee role":
           updateEmployeeRole();
           break;
 
-        case "view all employees by role":
-          viewAllEmployeesByRole();
-          break;
+        // case "view all employees by role":
+        //   viewAllEmployeesByRole();
+        //   break;
 
-        case "view all employees by department":
-          viewAllEmployeesByDepartment();
-          break;
+        // case "view all employees by department":
+        //   viewAllEmployeesByDepartment();
+        //   break;
 
-        case "view all employees by manager":
-          viewAllEmployeesByManager();
-          break;
+        // case "view all employees by manager":
+        //   viewAllEmployeesByManager();
+        //   break;
 
         case "exit employee tracker":
           exitEmployeeTracker();
@@ -251,7 +252,7 @@ const updateEmployeeRole = () => {
     .prompt([
       {
         name: "role_id",
-        message: "What is the New Role ID?",
+        message: "Which role ID are you updating?",
         type: "input",
       },
       {
