@@ -14,7 +14,7 @@
 * [Description](#Description)
 * [Features](#Features)
 * [Usage](#Usage)
-* [Demonstation Video](#Demonstration-Video)
+* [Video Demo Link](#Video-Demo-Link)
 
 ## Description
 -----
@@ -44,8 +44,9 @@ Design the following database schema containing three tables:
   * **role_id** 
   * **manager_id** 
 
-## Usage: Each prompt should allow user to;
-------
+## Usage
+-------
+Each prompt should allow user to;
 * Add departments, roles, employees
 
 * View departments, roles, employees
