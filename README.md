@@ -15,8 +15,6 @@
 * [Features](#Features)
 * [Usage](#Usage)
 * [Demonstation Video](#Demonstration-Video)
-* [License](#License)
-* [Conclusion](#Conclusion) 
 
 ## Description
 -----
@@ -54,12 +52,13 @@ Design the following database schema containing three tables:
 
 * Update employee roles
 
-Demonstation Video
+## Video Demo Link
+[https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing](https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing)
+
 -----
 aaaaa
 
-## Conclusion
------
-In conclusion, this app is almost ready, I still need to complete the Update employee role. 
+
+
 
 ----------------------------------------------------
