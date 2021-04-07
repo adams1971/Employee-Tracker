@@ -53,11 +53,14 @@ Each prompt should allow user to;
 
 * Update employee roles
 
-## Img Listening on Port 3000
-![public/assets/Screen-ShotEjs-localhost3000.png](public/assets/Screen-ShotEjs-localhost3000.png)
+### Screen Shot of View All Employees
+![assets/EmpTrc_MySQL12pic1.png](assets/EmpTrc_MySQL12pic1.png)
+
+### Screen Shot of View All Roles
+![assets/EmpTrc_MySQL_12pic2.png](assets/EmpTrc_MySQL_12pic2.png)
 
 ## Video Demo Link
-[https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing](https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing)
+[EmpTrc_MySQL12pic1.png](EmpTrc_MySQL12pic1.png)
 
 -----
 aaaaa
