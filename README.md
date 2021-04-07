@@ -53,6 +53,9 @@ Each prompt should allow user to;
 
 * Update employee roles
 
+## Img Listening on Port 3000
+![public/assets/Screen-ShotEjs-localhost3000.png](public/assets/Screen-ShotEjs-localhost3000.png)
+
 ## Video Demo Link
 [https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing](https://drive.google.com/file/d/19FWey5uW68OHJ13cOrecU5OHdlViZoqe/view?usp=sharing)
 
